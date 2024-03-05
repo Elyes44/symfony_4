@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ajouter post{% endblock %}
+{% block stylesheets %}
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('front/styles/contact_styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('front/styles/contact_responsive.css') }}">
+
+{% endblock %}
+
+{% block body %}
+<div class="container contact_container">
+
+
+    <!-- Map Container -->
+
+
+
+    <!-- Contact Us -->
+
+    <div class="row">
+
+
+        <div class="col">
+            <div class="get_in_touch_contents">
+                <h1>Get In Touch With Us!</h1>
+                <p>Fill out the form below to recieve a free and confidential.</p>
+                {{ form_start(form,{'attr': {'class': 'ajoutres'}}) }}
+                    <div>
+                        {{ form_widget(form.post, {'attr': {'class': 'input_ph input_message post'}}) }}
+                        <p class="error1" style="display: none"> post content cannot be null</p>
+                        <input class="input_ph image_post" type="file" >
+                        <p class="error2" style="display: none"> post image cannot be null</p>
+                        {{ form_widget(form.image, {'attr': {'class': 'form-control image'}}) }}
+
+                    </div>
+                    <div>
+                        <button id="review_submit" type="submit" class="red_button message_submit_btn trans_300" value="Submit">send message</button>
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+{% block javascripts  %}
+
+    <script src="{{ asset('front/js/contact_custom.js') }}"></script>
+    <script>
+        const form = document.querySelector('.ajoutres')
+        const input1 = document.querySelector('.post')
+        const input2 = document.querySelector('.image')
+        const file = document.querySelector('.image_post')
+
+        const errorP1 = document.querySelector('.error1')
+        const errorP2 = document.querySelector('.error2')
+        form.addEventListener('submit',e=>{
+            if(input1.value==""){
+                e.preventDefault()
+                errorP1.style.display = "block"
+
+
+
+
+            }
+            if(input2.value==""){
+                e.preventDefault()
+                errorP2.style.display = "block"
+
+
+
+
+            }
+
+        })
+     file.addEventListener('change',e=>{
+
+        input2.value=file.files[0].name
+
+     })
+
+
+
+
+
+    </script>
+
+{% endblock %}
+
